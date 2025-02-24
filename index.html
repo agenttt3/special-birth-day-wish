@@ -184,88 +184,106 @@
 	
 
 
+	/* Main Button */
+.btn {
+	position: fixed;
+	bottom: 40px; /* Adjusted for better visibility */
+	left: 50%;
+	transform: translateX(-50%);
+	background: linear-gradient(45deg, #ff0080, #ffbf00, #00ffbf, #008CBA);
+	background-size: 400% 400%;
+	padding: 12px 30px;
+	font-size: 18px;
+	font-weight: bold;
+	color: white;
+	border-radius: 8px;
+	outline: none;
+	z-index: 9999; /* Ensure button appears above other elements */
+	border: none;
+	cursor: pointer;
+	text-transform: uppercase;
+	letter-spacing: 2px;
+	overflow: hidden;
+	transition: all 0.3s ease-in-out;
+	animation: gradientMove 5s infinite linear;
+	box-shadow: 0 0 12px rgba(0, 140, 255, 0.5);
+	width: auto;
+	max-width: 90%; /* Ensures button fits on mobile */
+	text-align: center;
+}
+
+/* Responsive Adjustments for Mobile */
+@media (max-width: 480px) {
 	.btn {
-		position: fixed;
-		bottom: 50px;
-		left: 50%;
-		transform: translateX(-50%);
-		background: linear-gradient(45deg, #ff0080, #ffbf00, #00ffbf, #008CBA);
-		background-size: 400% 400%;
-		padding: 12px 30px;
-		font-size: 18px;
-		font-weight: bold;
-		color: white;
-		border-radius: 8px;
-		outline: none;
-		z-index: 100;
-		border: none;
-		cursor: pointer;
-		text-transform: uppercase;
-		letter-spacing: 2px;
-		overflow: hidden;
-		transition: all 0.3s ease-in-out;
-		animation: gradientMove 5s infinite linear;
-		box-shadow: 0 0 12px rgba(0, 140, 255, 0.5);
+		font-size: 14px; /* Adjust text size */
+		padding: 10px 20px; /* Reduce padding */
+		bottom: 50px; /* Increase distance from bottom */
 	}
-	
-	/* Cool Hover Effect */
-	.btn:hover {
-		transform: translateX(-50%) scale(1.1) rotate(2deg);
-		box-shadow: 0 0 18px rgba(255, 140, 0, 0.8),
-					0 0 35px rgba(255, 100, 0, 0.6),
-					0 0 50px rgba(255, 0, 0, 0.5);
-		animation: shake 0.15s infinite alternate, glow 1.2s infinite alternate;
-	}
-	
-	/* Ripple Wave Effect */
-	.btn::before {
-		content: "";
-		position: absolute;
-		top: 50%;
-		left: 50%;
-		width: 250%;
-		height: 250%;
-		background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 0%, transparent 80%);
-		transition: all 0.5s ease-out;
-		transform: translate(-50%, -50%) scale(0);
-		z-index: -1;
-	}
-	
-	.btn:hover::before {
-		transform: translate(-50%, -50%) scale(1);
-	}
-	
-	/* Background Gradient Animation */
-	@keyframes gradientMove {
-		0% { background-position: 0% 50%; }
-		50% { background-position: 100% 50%; }
-		100% { background-position: 0% 50%; }
-	}
-	
-	/* Glowing Effect */
-	@keyframes glow {
-		0% { box-shadow: 0 0 8px rgba(255, 140, 0, 0.6); }
-		100% { box-shadow: 0 0 20px rgba(255, 140, 0, 1); }
-	}
-	
-	/* Button Shake Animation */
-	@keyframes shake {
-		0% { transform: translateX(-50%) rotate(1deg); }
-		100% { transform: translateX(-50%) rotate(-1deg); }
-	}
-	
-	/* 🆕 Fade Out Animation */
-	@keyframes fadeOut {
-		0% { opacity: 1; transform: translateX(-50%) scale(1); }
-		100% { opacity: 0; transform: translateX(-50%) scale(0.8); }
-	}
-	
-	/* Apply fade-out animation when clicked */
-	.btn.fade-out {
-		animation: fadeOut 0.6s ease-out forwards;
-		pointer-events: none; /* Prevent multiple clicks */
-	}
-	
+}
+
+/* Cool Hover Effect */
+.btn:hover {
+	transform: translateX(-50%) scale(1.1) rotate(2deg);
+	box-shadow: 0 0 18px rgba(255, 140, 0, 0.8),
+				0 0 35px rgba(255, 100, 0, 0.6),
+				0 0 50px rgba(255, 0, 0, 0.5);
+	animation: shake 0.15s infinite alternate, glow 1.2s infinite alternate;
+}
+
+/* Ripple Wave Effect */
+.btn::before {
+	content: "";
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	width: 250%;
+	height: 250%;
+	background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 0%, transparent 80%);
+	transition: all 0.5s ease-out;
+	transform: translate(-50%, -50%) scale(0);
+	z-index: -1;
+}
+
+.btn:hover::before {
+	transform: translate(-50%, -50%) scale(1);
+}
+
+/* Background Gradient Animation */
+@keyframes gradientMove {
+	0% { background-position: 0% 50%; }
+	50% { background-position: 100% 50%; }
+	100% { background-position: 0% 50%; }
+}
+
+/* Glowing Effect */
+@keyframes glow {
+	0% { box-shadow: 0 0 8px rgba(255, 140, 0, 0.6); }
+	100% { box-shadow: 0 0 20px rgba(255, 140, 0, 1); }
+}
+
+/* Button Shake Animation */
+@keyframes shake {
+	0% { transform: translateX(-50%) rotate(1deg); }
+	100% { transform: translateX(-50%) rotate(-1deg); }
+}
+
+/* 🆕 Fade Out Animation */
+@keyframes fadeOut {
+	0% { opacity: 1; transform: translateX(-50%) scale(1); }
+	100% { opacity: 0; transform: translateX(-50%) scale(0.8); }
+}
+
+/* Apply fade-out animation when clicked */
+.btn.fade-out {
+	animation: fadeOut 0.6s ease-out forwards;
+	pointer-events: none; /* Prevent multiple clicks */
+}
+
+/* Prevent unwanted horizontal scrolling */
+body {
+	overflow-x: hidden;
+}
+
 	
 	
 	.clickHeart{
