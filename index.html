@@ -283,6 +283,42 @@ body {
 	overflow-x: hidden;
 }
 
+	@keyframes explode {
+    0% { transform: scale(0); opacity: 1; }
+    100% { transform: scale(1.5); opacity: 0; }
+}
+
+@keyframes firework-trail {
+    0% { transform: translateY(0); opacity: 1; }
+    100% { transform: translateY(-100px); opacity: 0; }
+}
+
+/* Firework container */
+.firework {
+    position: fixed;
+    width: 6px;
+    height: 6px;
+    background: radial-gradient(circle, #ff0000, transparent);
+    border-radius: 50%;
+    opacity: 0;
+    animation: explode 1s ease-out forwards;
+}
+
+/* Trail effect before explosion */
+.firework::before {
+    content: '';
+    position: absolute;
+    width: 2px;
+    height: 40px;
+    background: linear-gradient(to top, yellow, transparent);
+    bottom: -40px;
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0.8;
+    animation: firework-trail 0.8s ease-out forwards;
+}
+
+
 	
 	
 	.clickHeart{
@@ -419,7 +455,7 @@ let bCons=document.querySelectorAll(".bCon")
 
 
 let btn=document.querySelector(".btn")
-btn.addEventListener("click",()=>{
+/*btn.addEventListener("click",()=>{
 	
 	song();
 	flyBalloons();
@@ -432,7 +468,42 @@ btn.addEventListener("click",()=>{
 		btn.remove()
 	},3000)
 
-})
+})*/
+btn.addEventListener("click", () => {
+    song();
+    flyBalloons();
+
+    let cFront = document.querySelector(".cFront");
+    cFront.insertAdjacentHTML("beforeend", `<img class="cake" src="./helper/images/cake.png">`);
+
+    btn.style = `animation: fadeout 3.4s linear;`;
+
+    createFireworks(); // Call fireworks function
+
+    setTimeout(function () {
+        btn.remove();
+    }, 3000);
+});
+
+function createFireworks() {
+    for (let i = 0; i < 12; i++) { // 12 Fireworks
+        let firework = document.createElement("div");
+        firework.classList.add("firework");
+
+        let x = Math.random() * window.innerWidth;
+        let y = Math.random() * window.innerHeight * 0.6; // Keep fireworks in the upper screen
+
+        firework.style.left = `${x}px`;
+        firework.style.top = `${y}px`;
+
+        document.body.appendChild(firework);
+
+        setTimeout(() => {
+            firework.remove(); // Remove after animation
+        }, 1000);
+    }
+}
+
 
 window.addEventListener("click",(e)=>{
 	var coX=e.clientX;
