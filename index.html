@@ -217,9 +217,6 @@
 		}
 	}
 
-
-
-
 /* Cool Hover Effect */
 .btn:hover {
 	transform: translateX(-50%) scale(1.1) rotate(2deg);
@@ -283,44 +280,8 @@ body {
 	overflow-x: hidden;
 }
 
-	@keyframes explode {
-    0% { transform: scale(0); opacity: 1; }
-    100% { transform: scale(1.5); opacity: 0; }
-}
-
-@keyframes firework-trail {
-    0% { transform: translateY(0); opacity: 1; }
-    100% { transform: translateY(-100px); opacity: 0; }
-}
-
-/* Firework container */
-.firework {
-    position: fixed;
-    width: 6px;
-    height: 6px;
-    background: radial-gradient(circle, #ff0000, transparent);
-    border-radius: 50%;
-    opacity: 0;
-    animation: explode 1s ease-out forwards;
-}
-
-/* Trail effect before explosion */
-.firework::before {
-    content: '';
-    position: absolute;
-    width: 2px;
-    height: 40px;
-    background: linear-gradient(to top, yellow, transparent);
-    bottom: -40px;
-    left: 50%;
-    transform: translateX(-50%);
-    opacity: 0.8;
-    animation: firework-trail 0.8s ease-out forwards;
-}
 
 
-	
-	
 	.clickHeart{
 		position:absolute;
 		color:yellow;
@@ -469,6 +430,7 @@ let btn=document.querySelector(".btn")
 	},3000)
 
 })*/
+
 btn.addEventListener("click", () => {
     song();
     flyBalloons();
@@ -478,31 +440,40 @@ btn.addEventListener("click", () => {
 
     btn.style = `animation: fadeout 3.4s linear;`;
 
-    createFireworks(); // Call fireworks function
+    startFireworks(); // Start fireworks
 
-    setTimeout(function () {
+    setTimeout(() => {
         btn.remove();
     }, 3000);
 });
 
-function createFireworks() {
-    for (let i = 0; i < 12; i++) { // 12 Fireworks
-        let firework = document.createElement("div");
-        firework.classList.add("firework");
+function startFireworks() {
+    let fireworkInterval = setInterval(() => {
+        for (let i = 0; i < 10; i++) { // More fireworks at once
+            setTimeout(() => {
+                let firework = document.createElement("div");
+                firework.classList.add("firework");
 
-        let x = Math.random() * window.innerWidth;
-        let y = Math.random() * window.innerHeight * 0.6; // Keep fireworks in the upper screen
+                let x = Math.random() * window.innerWidth;
+                let y = Math.random() * (window.innerHeight * 0.8); // Fills screen area
 
-        firework.style.left = `${x}px`;
-        firework.style.top = `${y}px`;
+                firework.style.left = `${x}px`;
+                firework.style.top = `${y}px`;
 
-        document.body.appendChild(firework);
+                document.body.appendChild(firework);
 
-        setTimeout(() => {
-            firework.remove(); // Remove after animation
-        }, 1000);
-    }
+                setTimeout(() => {
+                    firework.remove();
+                }, 3000);
+            }, i * 200); // Small delay between fireworks
+        }
+    }, 1500); // Fireworks continue appearing every 1.5 seconds
+
+    setTimeout(() => {
+        clearInterval(fireworkInterval); // Stop fireworks after 45 seconds
+    }, 45000);
 }
+
 
 
 window.addEventListener("click",(e)=>{
