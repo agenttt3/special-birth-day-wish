@@ -179,26 +179,79 @@
 	.speaker {
 		text-align:right;
 	}
-	
-	.btn{
-		position:absolute;
-		bottom:15px;
-		left:50%;
-		transform:translateX(-50%);
-		background:#0066ff;
-		padding:15px 20px;
-		font-size:20px;
-		border-radius:5px;
-		outline:none;
-		z-index:5;
-		border:none;
-		transition-duration: 0.4s;
+
+
+	.btn {
+		position: fixed;
+		bottom: 15px;
+		left: 50%;
+		transform: translateX(-50%);
+		background: linear-gradient(45deg, #ff0080, #ffbf00, #00ffbf, #008CBA);
+		background-size: 400% 400%;
+		padding: 12px 30px;  /* Reduced padding for better size */
+		font-size: 18px;  /* Reduced font size */
+		font-weight: bold;
+		color: white;
+		border-radius: 8px;  /* Slightly smaller radius */
+		outline: none;
+		z-index: 100;
+		border: none;
+		cursor: pointer;
+		text-transform: uppercase;
+		letter-spacing: 2px;
+		overflow: hidden;
+		transition: all 0.3s ease-in-out;
+		animation: gradientMove 5s infinite linear;
+		box-shadow: 0 0 12px rgba(0, 140, 255, 0.5);
 	}
 	
-	.btn:hover{
-	border:3px solid #008CBA;
-		box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+	/* Cool Hover Effect */
+	.btn:hover {
+		transform: translateX(-50%) scale(1.1) rotate(2deg);
+		box-shadow: 0 0 18px rgba(255, 140, 0, 0.8), 
+					0 0 35px rgba(255, 100, 0, 0.6), 
+					0 0 50px rgba(255, 0, 0, 0.5);
+		animation: shake 0.15s infinite alternate, glow 1.2s infinite alternate;
 	}
+	
+	/* Ripple Wave Effect */
+	.btn::before {
+		content: "";
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		width: 250%;
+		height: 250%;
+		background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 0%, transparent 80%);
+		transition: all 0.5s ease-out;
+		transform: translate(-50%, -50%) scale(0);
+		z-index: -1;
+	}
+	
+	.btn:hover::before {
+		transform: translate(-50%, -50%) scale(1);
+	}
+	
+	/* Background Gradient Animation */
+	@keyframes gradientMove {
+		0% { background-position: 0% 50%; }
+		50% { background-position: 100% 50%; }
+		100% { background-position: 0% 50%; }
+	}
+	
+	/* Glowing Effect */
+	@keyframes glow {
+		0% { box-shadow: 0 0 8px rgba(255, 140, 0, 0.6); }
+		100% { box-shadow: 0 0 20px rgba(255, 140, 0, 1); }
+	}
+	
+	/* Button Shake Animation */
+	@keyframes shake {
+		0% { transform: translateX(-50%) rotate(1deg); }
+		100% { transform: translateX(-50%) rotate(-1deg); }
+	}	
+	
+	
 	
 	.clickHeart{
 		position:absolute;
@@ -215,28 +268,6 @@
 		}
 	}
 
-	#whatsapp-button {
-    position: fixed;
-    bottom: 20px; /* Distance from the bottom of the page */
-    right: 20px;  /* Distance from the right of the page */
-    background-color: #25D366; /* WhatsApp green background */
-    color: white; /* Icon color */
-    border: none;
-    border-radius: 50%;
-    padding: 15px;
-    font-size: 18px; /* Icon size */
-    cursor: pointer;
-    z-index: 1000; /* Ensure it stays on top of other content */
-}
-
-#whatsapp-button:hover {
-    background-color: #128C7E; /* Darker green on hover */
-}
-
-#whatsapp-button i {
-    margin-right: 5px; /* Space between icon and text */
-}
-	
 </style>
 
 </head>
@@ -263,7 +294,7 @@
 </div>
 
 <button class="inAnim abcd btn" effect="fadein" delay="3" duration="0.9"
- ><b>A GIFT FOR YOU</b></button>
+ ><b>Click for Surprise!</b></button>
 <!-- WhatsApp Share Button -->
 <!--button id="whatsapp-button">
     <i class="fa fa-whatsapp"></i>
