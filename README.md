@@ -1,6 +1,6 @@
 # SPCIAL-BIRTH-DAY-WISH
 
-# See live demo: <a href="https://agenttt3.github.io/hpbirthday/" target="_blanck">Click Here</a>
+# See live demo: <a href="https://agenttt3.github.io/special-birth-day-wish/" target="_blanck">Click Here</a>
 
 ### change the name of reciever
 
