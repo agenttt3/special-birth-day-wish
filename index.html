@@ -315,7 +315,7 @@ ballonContainer.insertAdjacentHTML("beforeend",ballonCode)
 // From
 
 if(from===null){
-from='Swabhiman'
+from='(Choro) Rudra'
 }
 
 document.querySelector(".speaker").innerHTML=`-${from}`
@@ -395,19 +395,5 @@ window.addEventListener("click",(e)=>{
 })
 
 </script>
-	<script>
-document.getElementById('whatsapp-button').addEventListener('click', function() {
-    // Define the message and URL
-    const currentUrl = window.location.href;
-    const message = 'Check out this page:'+currentUrl;
-    
-    // Encode the message for URL
-    const encodedMessage = encodeURIComponent(message);
-    
-    // Construct the WhatsApp share URL
-    const whatsappURL = `https://api.whatsapp.com/send?text=${encodedMessage}`;
-    // Open the WhatsApp URL in a new window/tab
-    window.open(whatsappURL);
-});
-	</script>
+	
 </html>
