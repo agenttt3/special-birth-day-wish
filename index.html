@@ -21,164 +21,167 @@
 
 
 <style type="text/css">
-	*,html{
-		margin:0;
-		padding:0;
+	*, html {
+		margin: 0;
+		padding: 0;
+		box-sizing: border-box;
 	}
 	
-	body{
-		min-height:100vh;
-		height:100%;
-		background-image:linear-gradient(red, transparent),
-							linear-gradient(to top left, lime, transparent),
-							linear-gradient(to top right, blue, transparent);
-		background-blend-mode: screen;;
-		background-repeat:no-repeat;
-		background-position:fixed;
-		overflow:hidden !important;
-		overflow-wrap:wrap;
+	body {
+		min-height: 100vh;
+		height: 100%;
+		background-image: linear-gradient(red, transparent),
+						  linear-gradient(to top left, lime, transparent),
+						  linear-gradient(to top right, blue, transparent);
+		background-repeat: no-repeat;
+		background-position: fixed;
+		overflow: hidden !important;
 	}
 	
-	
-	.container{
-		position:absolute;
-		height:400px;
-		width:250px;
+	/* 3D Card Container */
+	.container {
+		position: absolute;
+		height: 400px;
+		width: 250px;
 		perspective: 1000px;
-		left:50%;
-		top:50%;
-		transform:translate(-50%,-50%);
-		z-index:1;
+		left: 50%;
+		top: 50%;
+		transform: translate(-50%, -50%);
+		z-index: 1;
+		animation: cardEntry 1.5s ease-in-out;
 	}
 	
-	.container::before{
-	content:'';
-	position:absolute;
-	height:200px;
-	width:200px;
-	border-radius:50%;
-	background: rgb(131,58,180);
-	background: linear-gradient(90deg, rgba(131,58,180,1) 0%, rgba(255,84,161,1) 50%, rgba(252,176,69,1) 100%);;
-	transform:translate(-20%,-50%);
-	z-index:-5;
+	/* ✨ Entrance Animation for Card */
+	@keyframes cardEntry {
+		0% {
+			opacity: 0;
+			transform: translate(-50%, -60%) scale(0.8);
+		}
+		100% {
+			opacity: 1;
+			transform: translate(-50%, -50%) scale(1);
+		}
 	}
 	
-	
-	.container::after{
-	content:'';
-	position:absolute;
-	height:200px;
-	width:200px;
-	border-radius:50%;
-	background:rgb(131,58,180);
-	background:linear-gradient(90deg, rgba(131,58,180,1) 0%, rgba(255,84,161,1) 50%, rgba(252,176,69,1) 100%);;
-	transform:translate(50%,-30%) rotateY(180deg);
-	z-index:-1;
+	/* Gradient Circles (Removed Blur Effect) */
+	.container::before, .container::after {
+		content: '';
+		position: absolute;
+		height: 220px;
+		width: 220px;
+		border-radius: 50%;
+		background: linear-gradient(90deg, rgba(131, 58, 180, 1) 0%, rgba(255, 84, 161, 1) 50%, rgba(252, 176, 69, 1) 100%);
 	}
 	
-	
-	
-	.cFront , .cBack{
-		position:absolute;
-		height:400px;
-		width:250px;
-		background:rgba(255,255,255,0.1);
-		-webkit-backface-visibility: hidden;
-		backface-visibility:none;
-		border-radius:5px;
-		backdrop-filter:blur(5px);
+	.container::before {
+		transform: translate(-30%, -50%);
+		z-index: -5;
 	}
 	
-	.cFront .fullImg{
-		position:absolute;
-		left:0;
-		top:0;
-		height:100%;
-		width:100%;
-		border-radius:5px;
-		pointer-events:none;
-		
+	.container::after {
+		transform: translate(50%, -30%);
+		z-index: -1;
 	}
 	
-	.cake{
-		height:100px;
-		width:100px;
-		position:absolute;
-		bottom:0;
-		animation:fadein 2s linear;
-		
+	/* Front & Back Card */
+	.cFront, .cBack {
+		position: absolute;
+		height: 400px;
+		width: 250px;
+		background: rgba(255, 255, 255, 0.15);
+		border-radius: 8px;
+		backdrop-filter: blur(12px); /* Keeps text background blurry */
+		overflow: hidden;
+		box-shadow: 0px 10px 30px rgba(255, 255, 255, 0.3);
 	}
 	
-	img{
-		pointer-events:none;
-	}
-	.cBack{
-		transform:rotateY(180deg);
-		display:flex;
-		align-items:center;
-		padding:3px;
-		font-size:25px;
-		font-weight:500;
-		font-family: 'Lobster', cursive;
+	/* Card Image */
+	.cFront .fullImg {
+		position: absolute;
+		left: 0;
+		top: 0;
+		height: 100%;
+		width: 100%;
+		border-radius: 8px;
+		transition: transform 0.5s ease-in-out, box-shadow 0.5s ease-in-out;
 	}
 	
+	/* Cake Image */
+	.cake {
+		height: 100px;
+		width: 100px;
+		position: absolute;
+		bottom: 0;
+		animation: fadein 2s linear;
+	}
+	
+	/* Disable Image Selection */
+	img {
+		pointer-events: none;
+	}
+	
+	/* Back Side of the Card (Text Section) */
+	.cBack {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		padding: 15px;
+		font-size: 20px;
+		font-weight: bold;
+		font-family: 'Montserrat', sans-serif;
+		text-align: center;
+		opacity: 0;
+		transform: translateY(100%);  /* ✅ Now text appears from bottom */
+		transition: transform 0.6s ease-in-out, opacity 0.6s ease-in-out;
+	}
+	
+	/* ✨ New Typography Effect */
+	.cBack p {
+		background: linear-gradient(90deg, #ff8a00, #e52e71);
+		-webkit-background-clip: text;
+		background-clip: text;
+		-webkit-text-fill-color: transparent;
+		text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.3);
+	}
+	
+	/* Inner Card */
 	.cInner {
 		position: relative;
 		width: 100%;
 		height: 100%;
 		text-align: center;
-		transition: transform 0.8s;
+		transition: transform 0.5s ease-in-out;
 		transform-style: preserve-3d;
-		}
-		
-		/* Do an horizontal flip when you move the mouse over the flip box container */
-		.cInner:hover{
-		transform: rotateY(180deg);
-		}
-		
-		
-	.fadein{
-		animation:fadein 2s linear;
 	}
 	
-	@keyframes fadein{
-		from{
-			opacity:0;
-		}
-		
-		to{
-			opacity:1;
-		}
+	/* ✨ Hover Effects: Image Moves Up, Text Slides In from Bottom */
+	.cInner:hover .fullImg {
+		transform: translateY(-15px);
+		box-shadow: 0px 8px 20px rgba(255, 255, 255, 0.4);
 	}
 	
-	@keyframes fadeout{
-		from{opacity:1;}
-		to{opacity:0;}
+	.cInner:hover .cBack {
+		opacity: 1;
+		transform: translateY(0);  /* ✅ Now text comes from bottom */
 	}
 	
-	.zoomin{
-		display:block;
-	}
-	
-	@keyframes zoomin{
-		0%{
-			opacity:0.1;
-			transform:scale(1.5,1.5);
+	/* Fade In Animation */
+	@keyframes fadein {
+		from {
+			opacity: 0;
 		}
-		
-		50%{
-			opacity:0.2;
-		}
-		
-		100%{
-			opacity:1;
-			transform:scale(1,1);
+		to {
+			opacity: 1;
 		}
 	}
 	
+	/* Speaker Text */
 	.speaker {
-		text-align:right;
+		text-align: right;
 	}
+	
+	
+	
 
 
 	.btn {
@@ -188,11 +191,11 @@
 		transform: translateX(-50%);
 		background: linear-gradient(45deg, #ff0080, #ffbf00, #00ffbf, #008CBA);
 		background-size: 400% 400%;
-		padding: 12px 30px;  /* Reduced padding for better size */
-		font-size: 18px;  /* Reduced font size */
+		padding: 12px 30px;
+		font-size: 18px;
 		font-weight: bold;
 		color: white;
-		border-radius: 8px;  /* Slightly smaller radius */
+		border-radius: 8px;
 		outline: none;
 		z-index: 100;
 		border: none;
@@ -208,8 +211,8 @@
 	/* Cool Hover Effect */
 	.btn:hover {
 		transform: translateX(-50%) scale(1.1) rotate(2deg);
-		box-shadow: 0 0 18px rgba(255, 140, 0, 0.8), 
-					0 0 35px rgba(255, 100, 0, 0.6), 
+		box-shadow: 0 0 18px rgba(255, 140, 0, 0.8),
+					0 0 35px rgba(255, 100, 0, 0.6),
 					0 0 50px rgba(255, 0, 0, 0.5);
 		animation: shake 0.15s infinite alternate, glow 1.2s infinite alternate;
 	}
@@ -249,7 +252,19 @@
 	@keyframes shake {
 		0% { transform: translateX(-50%) rotate(1deg); }
 		100% { transform: translateX(-50%) rotate(-1deg); }
-	}	
+	}
+	
+	/* 🆕 Fade Out Animation */
+	@keyframes fadeOut {
+		0% { opacity: 1; transform: translateX(-50%) scale(1); }
+		100% { opacity: 0; transform: translateX(-50%) scale(0.8); }
+	}
+	
+	/* Apply fade-out animation when clicked */
+	.btn.fade-out {
+		animation: fadeOut 0.6s ease-out forwards;
+		pointer-events: none; /* Prevent multiple clicks */
+	}
 	
 	
 	
@@ -394,8 +409,7 @@ btn.addEventListener("click",()=>{
 
 	let cFront=document.querySelector(".cFront")
 	cFront.insertAdjacentHTML("beforeend",`<img class="cake" src=./helper/images/cake.png>`);
-	btn.style=`animation:fadeout 3.4s linear;
-	`
+	btn.style=`animation:fadeout 3.4s linear;`
 	
 	setTimeout(function(){
 		btn.remove()
