@@ -182,35 +182,12 @@
 	}
 	
 	
-	
 
-
-	/* Fix Background Scrolling Issue */
-body, html {
-		height: 100%;
-		margin: 0;
-		overflow: hidden; /* Prevents scrolling */
-		background: linear-gradient(90deg, #ff8a00, #e52e71);
-		background-attachment: fixed; /* Ensures it stays fixed */
-		background-size: cover;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-}
-
-/* Center Button Properly */
-.btn-container {
+	.btn {
 		position: fixed;
-		bottom: calc(10vh + 20px); /* Adjusts height dynamically */
-		left: 0;
-		width: 100%; /* Ensures it spans full width */
-		display: flex;
-		justify-content: center; /* Centers horizontally */
-		pointer-events: none; /* Ensures interactions pass through */
-}
-
-/* Updated Button Styles */
-.btn {
+		bottom: calc(5vh + 20px); /* Adjusted to keep button higher */
+		left: 50%;
+		transform: translateX(-50%);
 		background: linear-gradient(45deg, #ff0080, #ffbf00, #00ffbf, #008CBA);
 		background-size: 400% 400%;
 		padding: 14px 32px;
@@ -230,19 +207,17 @@ body, html {
 		box-shadow: 0 0 12px rgba(0, 140, 255, 0.5);
 		min-width: 120px;
 		max-width: 90%;
-		pointer-events: auto; /* Ensures the button remains clickable */
-}
+	}
 
-/* Responsive Fix for Mobile */
-@media (max-width: 768px) {
-		.btn-container {
-				bottom: calc(12vh + 20px); /* Adjusts for mobile */
-		}
+	/* 🆕 Better Mobile Adjustment */
+	@media (max-width: 768px) {
 		.btn {
-				padding: 12px 28px;
-				font-size: 14px;
+			bottom: calc(10vh + 20px); /* Lifts the button higher on mobile */
+			padding: 12px 28px;
+			font-size: 14px;
 		}
-}
+	}
+
 
 
 
