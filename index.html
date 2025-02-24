@@ -14,7 +14,7 @@
 <meta property="og:description" content="A gift to my dearest Person as know as My Stupid Only. Please click the below link to See." />
 
 <title>Special Birthday Wish</title>
-<link rel="stylesheet" href="balloon.css">
+<link rel="stylesheet" href="./helper/stylesheet/balloon.css">
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -241,13 +241,13 @@
 
 </head>
 <body>
-<audio class="birthSong" src="birthday.mp3" type="audio/mpeg"></audio>
+<audio class="birthSong" src="./helper/music/birthday.mp3" type="audio/mpeg"></audio>
 <div class="container">
 	
 	<div class="cInner" >
 		<div class="cFront">
-			<img src="./images/bdb.jpg" alt="Prarik Khuntia" class="fullImg">
-			<img src="./images/border.png" class="inAnim abcd fullImg" effect="zoomin" delay="1" duration="0.9">
+			<img src="./helper/images/bdb.jpg" alt="Prarik Khuntia" class="fullImg">
+			<img src="./helper/images/border.png" class="inAnim abcd fullImg" effect="zoomin" delay="1" duration="0.9">
 		</div>
 		<div class="cBack">
 		<div>
@@ -362,7 +362,7 @@ btn.addEventListener("click",()=>{
 	flyBalloons();
 
 	let cFront=document.querySelector(".cFront")
-	cFront.insertAdjacentHTML("beforeend",`<img class="cake" src=./images/cake.png>`);
+	cFront.insertAdjacentHTML("beforeend",`<img class="cake" src=./helper/images/cake.png>`);
 	btn.style=`animation:fadeout 3.4s linear;
 	`
 	

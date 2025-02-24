@@ -1,4 +1,4 @@
-# SPCIAL-BIRTH-DAY-WISH
+# SPECIAL-BIRTH-DAY-WISH
 
 # See live demo: <a href="https://agenttt3.github.io/special-birth-day-wish/" target="_blanck">Click Here</a>
 
