@@ -188,13 +188,13 @@
 	/* Main Button */
 	.btn {
 		position: fixed;
-		bottom: 5vh; /* Changed from 50px to vh for better mobile support */
+		bottom: calc(5vh + 20px); /* Adjusted to keep button higher */
 		left: 50%;
 		transform: translateX(-50%);
 		background: linear-gradient(45deg, #ff0080, #ffbf00, #00ffbf, #008CBA);
 		background-size: 400% 400%;
-		padding: 14px 32px; /* Slightly increased padding for better tap target */
-		font-size: 16px; /* Adjusted for better readability on mobile */
+		padding: 14px 32px;
+		font-size: 16px;
 		font-weight: bold;
 		color: white;
 		border-radius: 8px;
@@ -208,16 +208,16 @@
 		transition: all 0.3s ease-in-out;
 		animation: gradientMove 5s infinite linear;
 		box-shadow: 0 0 12px rgba(0, 140, 255, 0.5);
-		min-width: 120px; /* Ensures button doesn’t shrink too much */
-		max-width: 90%; /* Prevents button from going too wide */
+		min-width: 120px;
+		max-width: 90%;
 	}
 
-	/* 🆕 Responsive Fix for Smaller Screens */
-	@media (max-width: 480px) {
+	/* 🆕 Better Mobile Adjustment */
+	@media (max-width: 768px) {
 		.btn {
+			bottom: calc(10vh + 20px); /* Lifts the button higher on mobile */
 			padding: 12px 28px;
-			font-size: 14px; /* Smaller text for better fit */
-			bottom: 8vh; /* Moves button slightly higher on small screens */
+			font-size: 14px;
 		}
 	}
 
