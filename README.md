@@ -1,6 +1,6 @@
-# hpbirthday
+# special-birth-day-wish
 
-See live demo <a href="https://exkave.github.io/hpbirthday/" target="_blanck">Here</a>
+# See live demo <a href="https://agenttt3.github.io/hpbirthday/" target="_blanck">Here</a>
 
 ## change the name of reciever
 
