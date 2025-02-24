@@ -1,11 +1,11 @@
-# special-birth-day-wish
+# SPCIAL-BIRTH-DAY-WISH
 
-# See live demo <a href="https://agenttt3.github.io/hpbirthday/" target="_blanck">Here</a>
+# See live demo: <a href="https://agenttt3.github.io/hpbirthday/" target="_blanck">Click Here</a>
 
-## change the name of reciever
+### change the name of reciever
 
 add ``` ?name=birthday boy name``` to the url to change reciver name.
 
-## change sender name
+### change sender name
 
 Add ``` &from=sender name``` after birthday boy name to change sender name.
