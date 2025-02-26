@@ -15,7 +15,7 @@
 <meta property="og:description" content="A gift to my dearest Person only. Please click the below link to See." />
 
 <title>Special Birthday Wish</title>
-<link rel="stylesheet" href="./helper/stylesheet/balloon.css">
+<link rel="stylesheet" href="./helper/stylesheet/style.css">
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -127,9 +127,10 @@
 		align-items: center;
 		justify-content: center;
 		padding: 15px;
-		font-size: 20px;
+		font-size: 15px;
 		font-weight: bold;
-		font-family: 'Montserrat', sans-serif;
+		font-family: 'Poppins', sans-serif;
+		text-transform: uppercase;
 		text-align: center;
 		opacity: 0;
 		transform: translateY(100%);  /* ✅ Now text appears from bottom */
@@ -184,97 +185,90 @@
 	
 
 	.btn {
-		position: absolute;
-		bottom: 5vh; /*calc(5vh + 20px);  Adjusted to keep button higher */
+		position: fixed;
+		bottom: 5vh;
 		left: 50%;
 		transform: translateX(-50%);
-		background: linear-gradient(45deg, #ff0080, #ffbf00, #00ffbf, #008CBA);
-		background-size: 400% 400%;
-		padding: 14px 32px;
-		font-size: 16px;
+		background: linear-gradient(135deg, #ff6f61, #ffbf00, #00c2ff, #9400ff);
+		background-size: 300% 300%;
+		padding: 16px 36px;
+		font-size: 18px;
 		font-weight: bold;
 		color: white;
-		border-radius: 8px;
+		border-radius: 12px;
 		outline: none;
 		z-index: 100;
 		border: none;
 		cursor: pointer;
 		text-transform: uppercase;
-		letter-spacing: 2px;
+		letter-spacing: 1.5px;
 		overflow: hidden;
-		transition: all 0.3s ease-in-out;
-		animation: gradientMove 5s infinite linear;
-		box-shadow: 0 0 12px rgba(0, 140, 255, 0.5);
-		min-width: 120px;
-		max-width: 90%;
+		transition: all 0.4s ease-in-out;
+		animation: gradientMove 6s infinite linear;
+		box-shadow: 0 8px 20px rgba(0, 140, 255, 0.4);
+		min-width: 140px;
+		max-width: 95%;
 	}
-
-	/* 🆕 Better Mobile Adjustment */
+	
+	/* 🆕 Better Mobile & Tablet Adjustment */
 	@media (max-width: 768px) {
 		.btn {
-			bottom: calc(10vh + 20px); /* Lifts the button higher on mobile */
-			padding: 12px 28px;
-			font-size: 14px;
+			bottom: 8vh; /* Adjust height on mobile */
+			padding: 14px 32px;
+			font-size: 16px;
 		}
 	}
-
-/* Cool Hover Effect */
-.btn:hover {
-	transform: translateX(-50%) scale(1.1) rotate(2deg);
-	box-shadow: 0 0 18px rgba(255, 140, 0, 0.8),
-				0 0 35px rgba(255, 100, 0, 0.6),
-				0 0 50px rgba(255, 0, 0, 0.5);
-	animation: shake 0.15s infinite alternate, glow 1.2s infinite alternate;
-}
-
-/* Ripple Wave Effect */
-.btn::before {
-	content: "";
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	width: 250%;
-	height: 250%;
-	background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 0%, transparent 80%);
-	transition: all 0.5s ease-out;
-	transform: translate(-50%, -50%) scale(0);
-	z-index: -1;
-}
-
-.btn:hover::before {
-	transform: translate(-50%, -50%) scale(1);
-}
-
-/* Background Gradient Animation */
-@keyframes gradientMove {
-	0% { background-position: 0% 50%; }
-	50% { background-position: 100% 50%; }
-	100% { background-position: 0% 50%; }
-}
-
-/* Glowing Effect */
-@keyframes glow {
-	0% { box-shadow: 0 0 8px rgba(255, 140, 0, 0.6); }
-	100% { box-shadow: 0 0 20px rgba(255, 140, 0, 1); }
-}
-
-/* Button Shake Animation */
-@keyframes shake {
-	0% { transform: translateX(-50%) rotate(1deg); }
-	100% { transform: translateX(-50%) rotate(-1deg); }
-}
-
-/* 🆕 Fade Out Animation */
-@keyframes fadeOut {
-	0% { opacity: 1; transform: translateX(-50%) scale(1); }
-	100% { opacity: 0; transform: translateX(-50%) scale(0.8); }
-}
-
-/* Apply fade-out animation when clicked */
-.btn.fade-out {
-	animation: fadeOut 0.6s ease-out forwards;
-	pointer-events: none; /* Prevent multiple clicks */
-}
+	
+	/* 🔥 Mobile Tap Effect */
+	.btn:active {
+		transform: translateX(-50%) scale(0.95);
+		box-shadow: 0 4px 15px rgba(255, 100, 0, 0.6);
+	}
+	
+	/* 💥 Press-Down Ripple Effect */
+	.btn::after {
+		content: "";
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		width: 0;
+		height: 0;
+		background: rgba(255, 255, 255, 0.3);
+		border-radius: 50%;
+		transform: translate(-50%, -50%);
+		transition: width 0.4s, height 0.4s, opacity 0.6s;
+	}
+	
+	.btn:active::after {
+		width: 250%;
+		height: 250%;
+		opacity: 0;
+	}
+	
+	/* 🎨 Background Animation */
+	@keyframes gradientMove {
+		0% { background-position: 0% 50%; }
+		50% { background-position: 100% 50%; }
+		100% { background-position: 0% 50%; }
+	}
+	
+	/* 🎭 Smooth Disappearing Effect */
+	@keyframes fadeOut {
+		0% { opacity: 1; transform: translateX(-50%) scale(1); }
+		100% { opacity: 0; transform: translateX(-50%) scale(0.8); }
+	}
+	
+	/* Apply fade-out when clicked */
+	.btn.fade-out {
+		animation: fadeOut 0.6s ease-out forwards;
+		pointer-events: none;
+	}
+	
+	/* 🔄 Prevent Unwanted Horizontal Scroll */
+	body {
+		overflow-x: hidden;
+	}
+	
 
 /* Prevent unwanted horizontal scrolling */
 body {
@@ -308,7 +302,7 @@ body {
 	<div class="cInner" >
 		<div class="cFront">
 			<img src="./helper/images/bdb.jpg" alt="Prarik Khuntia" class="fullImg">
-			<img src="./helper/images/border.png" class="inAnim abcd fullImg" effect="zoomin" delay="1" duration="0.9">
+			<!--img src="./helper/images/border.png" class="inAnim abcd fullImg" effect="zoomin" delay="1" duration="0.9"-->
 		</div>
 		<div class="cBack">
 		<div>
@@ -323,8 +317,7 @@ body {
 <div class="abCon">
 </div>
 
-<button class="inAnim abcd btn" effect="fadein" delay="3" duration="0.9"
- ><b>Click for Surprise!</b></button>
+<button class="inAnim abcd btn" effect="fadein" delay="3" duration="0.9"><b>Click for Surprise!</b></button>
 <!-- WhatsApp Share Button -->
 <!--button id="whatsapp-button">
     <i class="fa fa-whatsapp"></i>
@@ -436,10 +429,12 @@ btn.addEventListener("click", () => {
     song();
     flyBalloons();
 
-    let cFront = document.querySelector(".cFront");
-    cFront.insertAdjacentHTML("beforeend", `<img class="cake" src="./helper/images/cake.png">`);
+    //let cFront = document.querySelector(".cFront");
+    //cFront.insertAdjacentHTML("beforeend", `<img class="cake" src="./helper/images/cake.png">`);
 
-    btn.style = `animation: fadeout 3.4s linear;`;
+    //btn.style = `animation: fadeout 3.4s linear;`;
+	playCelebrationVideo(); // Play video over the image
+	btn.classList.add("fade-out"); // Apply smooth fade-out
 
     startFireworks(); // Start fireworks
 
@@ -473,6 +468,30 @@ function startFireworks() {
     setTimeout(() => {
         clearInterval(fireworkInterval); // Stop fireworks after 45 seconds
     }, 45000);
+}
+
+// Function to Play Video Over Image
+function playCelebrationVideo() {
+    let cFront = document.querySelector(".cFront");
+
+    // Create video element
+    let video = document.createElement("video");
+    video.src = "./helper/video/love-wishing.mp4"; // Replace with your video path
+    video.classList.add("celebration-video");
+    video.autoplay = true;
+    video.loop = false;
+    video.muted = false;
+    video.controls = false;
+
+    cFront.appendChild(video);
+
+    // 🆕 Smooth Fade Out Effect After Video Ends
+    video.addEventListener("ended", () => {
+        //video.classList.add("video-fade-out"); // Apply fade-out animation
+        setTimeout(() => {
+            video.remove();
+        }, 1500); // Remove after fade-out completes
+    });
 }
 
 

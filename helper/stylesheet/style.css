@@ -126,14 +126,43 @@ display:flex;
 @media screen and (max-width:480px) {
   
   :root{
-  	--height:60px;
+  --height:60px;
   }
   /*.balloon{
-  	height:50px;
-  	width:35px;
+  height:50px;
+  width:35px;
   }*/
 }
 
 .bCon:nth-child(even) .balloon{
   animation-delay:1s;
 }
+
+.celebration-video {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80%;
+  max-width: 600px;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+  z-index: 200;
+}
+
+/* 🎬 Perfectly Smooth Video Fade-Out */
+.video-fade-out {
+  animation: fadeOutVideo 2.5s ease-in-out forwards;
+  pointer-events: none; /* Prevents any interaction during fade */
+}
+
+/* 🔥 Ultra-Smooth Video Fade Animation */
+@keyframes fadeOutVideo {
+  0% { opacity: 1; transform: scale(1); }
+  40% { opacity: 0.7; transform: scale(1.01); }  /* Slight expansion */
+  70% { opacity: 0.4; transform: scale(1.02); }  /* Gentle fade & expand */
+  100% { opacity: 0; transform: scale(1); }  /* Fully faded but no sudden shrink */
+}
+
+
+
