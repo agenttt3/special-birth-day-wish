@@ -124,11 +124,14 @@
 		transform-style: preserve-3d;
 		}
 		
-		/* Do an horizontal flip when you move the mouse over the flip box container */
+		/* Do an horizontal flip when you move the mouse over the flip box container 
 		.cInner:hover{
 		transform: rotateY(180deg);
-		}
-		
+		}*/
+	.cInner.hover-enabled:hover {
+			transform: rotateY(180deg);
+	}
+			
 		
 	.fadein{
 		animation:fadein 2s linear;
@@ -209,6 +212,7 @@
 			transform:scale(2,2);
 		}
 	}
+
 
 </style>
 
@@ -347,6 +351,7 @@ btn.addEventListener("click", () => {
     song();
     flyBalloons();
 
+	createLoveEffect();
     //let cFront = document.querySelector(".cFront");
     //cFront.insertAdjacentHTML("beforeend", `<img class="cake" src="./helper/images/cake.png">`);
 
@@ -383,9 +388,9 @@ function startFireworks() {
         }
     }, 1500); // Fireworks continue appearing every 1.5 seconds
 
-    setTimeout(() => {
+    /*setTimeout(() => {
         clearInterval(fireworkInterval); // Stop fireworks after 45 seconds
-    }, 45000);
+    }, 45000);*/
 }
 
 // Function to Play Video Over Image
@@ -407,9 +412,50 @@ function playCelebrationVideo() {
     video.addEventListener("ended", () => {
         //video.classList.add("video-fade-out"); // Apply fade-out animation
         setTimeout(() => {
-            video.remove();
+            flipCard();
         }, 1500); // Remove after fade-out completes
+
     });
+}
+
+function flipCard() {
+    const card = document.querySelector(".cInner");
+    card.style.transform = "rotateY(180deg)";
+
+	enableHoverFlip();
+}
+
+function enableHoverFlip() {
+    const card = document.querySelector(".cInner");
+    card.classList.add("hover-enabled");
+}
+
+function createLoveEffect() {
+    const numHearts = 700; // Number of hearts
+    for (let i = 0; i < numHearts; i++) {
+        setTimeout(() => {
+            const heart = document.createElement("div");
+            heart.classList.add("heart");
+            heart.innerHTML = "❤️"; // Heart Symbol
+            document.body.appendChild(heart);
+
+            // Random Position (Full Screen)
+            heart.style.left = `${Math.random() * 100}vw`;
+            heart.style.top = `${Math.random() * 100}vh`;
+
+            // Random Size
+            const size = Math.random() * 20 + 10; // Between 10px - 30px
+            heart.style.fontSize = `${size}px`;
+
+            // Random Animation Duration
+            heart.style.animationDuration = `${2 + Math.random() * 3}s`;
+
+            // Remove heart after animation completes
+            setTimeout(() => {
+                heart.remove();
+            }, 10000);
+        }, i * 100); // Delay between each heart creation
+    }
 }
 
 
